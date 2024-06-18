@@ -1,0 +1,26 @@
+{{! Use the main layout }}
+{{!< main }}
+
+<div class="profile-container">
+    <div class="profile-avatar">
+        <img src="{{#if user.avatar_url}}{{user.avatar_url}}{{else}}/avatar/{{user.username}}{{/if}}" alt="Avatar">
+    </div>
+    
+    <section class="profile-info">
+        <h2>{{user.username}}</h2>
+        <p>Member since: {{user.createdAt}}</p>
+    </section>
+</div>
+
+<section class="user-posts">
+    <h2>Your Posts</h2>
+    {{#if userPosts.length}}
+        <ul>
+            {{#each userPosts}}
+                {{> post this user=../user}}
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>You have not posted anything yet.</p>
+    {{/if}}
+</section>

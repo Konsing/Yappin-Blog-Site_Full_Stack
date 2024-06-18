@@ -1,0 +1,16 @@
+<!-- registerUsername.handlebars -->
+{{#> main}}
+<section class="register-username">
+    <h2>Register Username</h2>
+    {{#if error}}
+        <p style="color: red;">{{error}}</p>
+    {{/if}}
+    <form action="/registerUsername" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</section>
+{{/main}}

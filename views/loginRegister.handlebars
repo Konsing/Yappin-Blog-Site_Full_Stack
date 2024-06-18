@@ -1,0 +1,53 @@
+<!-- loginRegister.handlebars -->
+{{#> main}}
+<section class="login-register">
+    <section class="login-area">
+        <h2>Login</h2>
+        {{#if loginError}}
+            <p style="color: red;">{{loginError}}</p>
+        {{/if}}
+        <form action="/login" method="POST">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p>Or login with:</p>
+        <a href="/auth/google" class="google-auth-button">
+            <i class="fab fa-google"></i> Sign in with Google
+        </a>
+    </section>
+
+    <p class="separator">OR</p>
+
+    <section class="register-area">
+        <h2>Register</h2>
+        {{#if registerError}}
+            <p style="color: red;">{{registerError}}</p>
+        {{/if}}
+        {{#if registerSuccess}}
+            <p style="color: blue;">{{registerSuccess}}</p>
+        {{/if}}
+        <form action="/register" method="POST">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </section>
+</section>
+{{/main}}

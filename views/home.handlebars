@@ -1,0 +1,105 @@
+{{! Use the main layout }}
+{{#> main}}
+{{#if user.loggedIn}}
+    <!-- show the create post form when logged in -->
+    <section class="post-form">
+        <h2>Create a new post</h2>
+        <form action="/posts" method="POST">
+            <div>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" rows="5" required></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="emoji-button" onclick="toggleEmojiPanel()">😀</button>
+                <span><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown</a> is supported</span>
+                <button type="submit" class="post-button">Post</button>
+            </div>
+        </form>
+
+        <div id="emoji-container" class="emoji-panel" style="display: none;">
+            <input type="text" id="emoji-search" oninput="searchEmojis()" placeholder="Search emojis...">
+            <div id="emoji-grid"></div>
+        </div>
+    </section>
+{{/if}}
+
+<div class="sort-options">
+    <label for="sort-by">Sort by: </label>
+    <select id="sort-by" onchange="sortPosts()">
+        <option value="recency" {{#ifCond sort 'recency'}}selected{{/ifCond}}>Recency</option>
+        <option value="likes" {{#ifCond sort 'likes'}}selected{{/ifCond}}>Likes</option>
+    </select>
+</div>
+
+<section class="posts-list">
+    {{#if posts.length}}
+    <ul id="posts-list">
+        {{#each posts}}
+            {{> post this user=../user}}
+        {{/each}}
+    </ul>
+    {{else}}
+        <p id="no_posts">No posts available. Be the first to post something!</p>
+    {{/if}}
+</section>
+
+<script>
+let allEmojis = [];
+
+function toggleEmojiPanel() {
+    const container = document.getElementById('emoji-container');
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
+
+    if (container.style.display === 'block' && allEmojis.length === 0) {
+        fetch('/emojis?page=0')
+            .then(response => response.json())
+            .then(data => {
+                allEmojis = data.emojis;
+                displayEmojis(allEmojis);
+            })
+            .catch(error => {
+                console.error("Error fetching emojis:", error);
+            });
+    }
+}
+
+function displayEmojis(emojis, limit = 200) {
+    const container = document.getElementById('emoji-grid');
+    container.innerHTML = '';
+    emojis.slice(0, limit).forEach(emoji => {
+        const emojiElement = document.createElement('span');
+        emojiElement.textContent = emoji.character;
+        emojiElement.title = emoji.name;
+        emojiElement.style.cursor = 'pointer';
+        emojiElement.onclick = () => insertEmoji(emoji.character);
+        container.appendChild(emojiElement);
+    });
+}
+
+function searchEmojis() {
+    const searchTerm = document.getElementById('emoji-search').value.toLowerCase();
+    const filteredEmojis = allEmojis.filter(emoji => {
+        const emojiDescription = emoji.name.toLowerCase();
+        return emojiDescription.includes(searchTerm);
+    });
+    displayEmojis(filteredEmojis);
+}
+
+function insertEmoji(emoji) {
+    const textarea = document.getElementById('content');
+    textarea.value += emoji;
+    textarea.focus();
+}
+
+function sortPosts() {
+    const sortBy = document.getElementById('sort-by').value;
+    const url = new URL(window.location.href);
+    url.searchParams.set('sort', sortBy);
+    window.location.href = url.toString();
+}
+</script>
+{{/main}}

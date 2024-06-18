@@ -1,0 +1,77 @@
+{{!-- post.handlebars --}}
+<div class="post">
+  <div class="post-avatar">
+    <img src="{{#if this.avatar_url}}{{this.avatar_url}}{{else}}/avatar/{{this.username}}{{/if}}" alt="Avatar">
+  </div>
+  <div class="post-content preserve-newlines">
+    <h3>{{title}}</h3>
+    <div class="markdown-content">{{{content}}}</div> <!-- Render HTML content -->
+    <div class="post-status-bar">
+      {{#ifUserMatch user.username username}}
+        <form action="/delete/{{id}}" method="POST" class="delete-form">
+          <button type="submit" class="delete-button" data-id="{{id}}">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </form>
+        <a href="/edit/{{id}}" class="edit-button">
+          <i class="fas fa-edit"></i> Edit
+        </a>
+      {{else}}
+        <button class="like-button" data-id="{{id}}">
+          ⬆️ Upvote
+        </button>
+      {{/ifUserMatch}}
+      <span class="like-count">{{likes}} likes</span>
+      <span>by {{username}} on {{timestamp}}</span>
+    </div>        
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const isAuthenticated = {{#if user}}true{{else}}false{{/if}};
+
+  const likeButtons = document.querySelectorAll('.like-button');
+  likeButtons.forEach(button => {
+    if (!button.dataset.listenerAdded) { // Check if listener is already added
+      button.dataset.listenerAdded = true; // Mark the button as having a listener
+
+      button.addEventListener('click', async function(event) {
+        event.preventDefault();
+        const postId = this.getAttribute('data-id');
+
+        if (!isAuthenticated) {
+          window.location.href = "/login";
+          return;
+        }
+
+        console.log(`Like button clicked for post ID: ${postId}`);
+        try {
+          const response = await fetch(`/like/${postId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          const data = await response.json();
+          console.log(`Response from server:`, data);
+          if (data.redirect) {
+            window.location.href = data.redirect;
+          } else if (data.likes !== undefined) {
+            const likeCountSpan = this.nextElementSibling;
+            likeCountSpan.textContent = `${data.likes} likes`;
+            if (data.likedByUser) {
+              this.textContent = '⬆️ Upvoted';
+            } else {
+              this.textContent = '⬆️ Upvote';
+            }
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      });
+    }
+  });
+});
+</script>
