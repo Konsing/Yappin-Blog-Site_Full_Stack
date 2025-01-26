@@ -1,8 +1,6 @@
-Here's the updated **README.md** with all images aligned to the left and set to a width of **650 pixels** for a consistent display. 🚀
 
 ---
 
-```md
 # 📢 Yappin' - Microblogging Application
 
 ## Overview
