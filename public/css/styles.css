@@ -1,659 +1,848 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
 
-/* Global Styles */
-* {
-  padding: 0px;
-  border: 0px;
-  margin: 0px;
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* ── Base ── */
 body {
   font-family: "Nunito", Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
+  font-weight: 400;
+  font-size: 14px;
+  color: #451a03;
+  background: #fef7ed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
+a {
+  color: #ea580c;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Header ── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fffbeb;
+  border-bottom: 3px solid #f59e0b;
+  padding: 0 24px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-header .logo,
-header nav {
-  flex: 1;
-}
-
-header .logo {
+.header-brand {
   display: flex;
   align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.header-brand:hover {
+  text-decoration: none;
 }
 
-header nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-#Yappin {
-  color: #fff;
-  font-weight: bold;
-  font-size: 4rem;
-  text-align: center;
-  flex: 2;
-}
-
-.header-logo {
-  width: 70px;
-  height: auto;
-  max-width: 100%;
-  border: 2px;
+.header-brand img {
+  width: 44px;
+  height: 44px;
   border-radius: 10px;
 }
 
-.logo h1 {
-  margin-left: 20px;
-  font-size: 24px;
+.header-brand span {
+  font-weight: 800;
+  font-size: 26px;
+  color: #92400e;
 }
 
-nav ul {
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-nav {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   align-items: center;
+  gap: 4px;
 }
 
-nav ul li {
-  margin-left: 20px;
+.header-nav li a {
+  display: block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #78350f;
+  transition: background 0.15s;
 }
-
-nav ul li a {
-  color: #fff;
+.header-nav li a:hover {
+  background: #fef3c7;
   text-decoration: none;
-  font-weight: bold;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
 }
 
 .header-avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  margin-left: 10px;
+  margin-left: 8px;
+  border: 2px solid #fbbf24;
 }
 
-footer {
-  background-color: #333;
-  color: #fff;
+/* ── Page wrapper ── */
+.page-wrap {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* ── Main layout (sidebar + feed) ── */
+.main-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 84px;
+}
+
+/* ── Card (shared) ── */
+.card {
+  background: #fff;
+  border: 2px solid #fbbf24;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* ── Sidebar profile card ── */
+.sidebar-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 10px 0;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
 }
 
-.content-container {
-  padding: 20px;
-  max-width: 50%; /* Increased max-width to use more space */
-  margin: 20px auto;
-  padding-bottom: 20px; /* Add some padding to the bottom */
-}
-
-/* Post Form Styles */
-.post-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.post-form h2 {
-  margin-top: 0;
-}
-
-.post-form input,
-.post-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+.sidebar-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid #f59e0b;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
-.post-form .form-actions {
+.sidebar-profile .username {
+  font-weight: 800;
+  font-size: 16px;
+  color: #451a03;
+}
+
+.sidebar-profile .member-since {
+  font-size: 12px;
+  color: #a16207;
+  margin-bottom: 12px;
+}
+
+.sidebar-stats {
+  width: 100%;
+  border-top: 2px solid #fef3c7;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #78350f;
+}
+
+.sidebar-stats span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Sidebar community card ── */
+.community-stats {
+  font-size: 13px;
+  color: #78350f;
+}
+
+.community-stats h3 {
+  font-weight: 800;
+  font-size: 14px;
+  color: #451a03;
+  margin-bottom: 10px;
+}
+
+.community-stats .stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #fef3c7;
+}
+.community-stats .stat-row:last-child {
+  border-bottom: none;
+}
+
+.community-stats .stat-label {
+  color: #a16207;
+}
+
+.community-stats .stat-value {
+  font-weight: 700;
+  color: #451a03;
+}
+
+/* ── Feed ── */
+.feed {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Sort bar ── */
+.sort-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.post-form .emoji-button {
-  background-color: #ddd;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
+.sort-bar h2 {
+  font-weight: 800;
+  font-size: 20px;
+  color: #451a03;
+}
+
+.sort-bar select {
+  padding: 6px 12px;
+  border: 2px solid #fde68a;
+  border-radius: 12px;
+  background: #fffbeb;
+  font-family: inherit;
+  font-size: 13px;
+  color: #78350f;
   cursor: pointer;
 }
 
-.post-form .post-button {
-  background-color: #007bff;
+/* ── Compose box ── */
+.compose {
+  background: #fff;
+  border: 2px solid #fbbf24;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.compose input[type="text"],
+.compose textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #fde68a;
+  border-radius: 12px;
+  background: #fffbeb;
+  font-family: inherit;
+  font-size: 14px;
+  color: #451a03;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.compose input[type="text"]:focus,
+.compose textarea:focus {
+  border-color: #f59e0b;
+}
+
+.compose input[type="text"] {
+  margin-bottom: 10px;
+}
+
+.compose textarea {
+  min-height: 80px;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.compose-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.compose-actions .emoji-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.compose-actions .md-link {
+  font-size: 12px;
+  color: #a16207;
+}
+
+.compose-actions .post-btn {
+  margin-left: auto;
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
   color: #fff;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 14px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 20px;
+  padding: 10px 28px;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.compose-actions .post-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.45);
 }
 
+/* ── Emoji panel ── */
 .emoji-panel {
-  background-color: #fff;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 10px;
+  background: #fffbeb;
+  border: 2px solid #fde68a;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 12px;
 }
 
 .emoji-panel input {
   width: 100%;
-  padding: 10px;
+  padding: 8px 12px;
+  border: 2px solid #fde68a;
+  border-radius: 10px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 13px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  outline: none;
 }
 
-.emoji-panel #emoji-grid {
+.emoji-panel .emoji-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
-.emoji-panel #emoji-grid span {
+.emoji-panel .emoji-grid span {
   font-size: 24px;
   cursor: pointer;
+  padding: 2px;
+  border-radius: 6px;
+  transition: background 0.1s;
 }
-/* Stuff related to "No Posts so far" */
-
-.posts-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  width: auto;
-  margin: 20px auto;
+.emoji-panel .emoji-grid span:hover {
+  background: #fef3c7;
 }
 
-#no_posts {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-/* Post List Styles */
-.posts-list ul {
-  list-style: none;
-  padding: 0;
-  width: 100%; /* Ensure posts list uses full width */
-}
-
-.posts-list li {
-  background-color: #fff;
+/* ── Post card ── */
+.post-card {
+  background: #fff;
+  border: 2px solid #fbbf24;
+  border-radius: 20px;
   padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.post-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(251, 191, 36, 0.2);
 }
 
-.post {
+.post-header {
   display: flex;
-  align-items: start;
-  gap: 20px; /* Added gap for better spacing between avatar and content */
-  padding: 20px; /* Added padding for better spacing inside the post */
-  margin: 15px auto;
-  border: 1px solid #ccc;
-  border-radius: 10px; /* Rounded corners for a more modern look */
-  background-color: #fff;
-}
-
-.post-avatar img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.post-content {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* Ensure the content takes the available space */
-}
-
-.post-content h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.post-content p {
-  white-space: pre-wrap;
-  margin: 0;
-}
-
-.post-status-bar {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.post-status-bar form {
-  display: inline;
+.post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #f59e0b;
+  flex-shrink: 0;
 }
 
-.post-status-bar button {
+.post-meta .post-author {
+  font-weight: 700;
+  font-size: 14px;
+  color: #451a03;
+}
+
+.post-meta .post-date {
+  font-size: 12px;
+  color: #a16207;
+}
+
+.post-title {
+  font-weight: 800;
+  font-size: 17px;
+  color: #451a03;
+  margin-bottom: 8px;
+}
+
+.post-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #78350f;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.post-body img {
+  border-radius: 12px;
+  margin: 8px 0;
+}
+
+.post-body pre {
+  background: #451a03;
+  color: #fbbf24;
+  padding: 14px;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.post-body code {
+  background: #fef3c7;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+  color: #fbbf24;
+}
+
+.post-footer {
+  border-top: 2px solid #fef3c7;
+  margin-top: 14px;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.upvote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 2px solid #fde68a;
+  background: #fffbeb;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a16207;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.upvote-btn:hover {
+  border-color: #f59e0b;
+  background: #fef3c7;
+}
+.upvote-btn.active {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #fff;
+}
+
+.post-footer .edit-link,
+.post-footer .delete-form button {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a16207;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.post-footer .edit-link:hover,
+.post-footer .delete-form button:hover {
+  background: #fef3c7;
+  text-decoration: none;
+}
+
+.post-footer .like-count {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 700;
+  color: #a16207;
+}
+
+/* ── No-posts message ── */
+.no-posts {
+  text-align: center;
+  padding: 40px 20px;
   font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  color: #a16207;
+  font-weight: 600;
 }
 
-.post-status-bar span {
-  margin-left: 10px;
-}
-
-/* Login/Register Styles */
+/* ── Login / Register ── */
 .login-register {
   display: flex;
-  justify-content: space-around;
-  margin: 10% auto;
-  gap: 20px; /* Added gap for better spacing between the sections */
-}
-
-.login-register section {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-}
-
-.login-register h2 {
-  margin-top: 0;
-  text-align: center; /* Center align the headers */
-}
-
-.login-register form {
-  display: flex;
-  flex-direction: column;
-  width: 100%; /* Ensure the form takes full width */
-}
-
-.login-register form div {
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the start */
-  width: 100%; /* Ensure each div takes full width */
-}
-
-.login-register form label {
-  margin-bottom: 5px;
-  width: 100%; /* Ensure labels take full width */
-}
-
-.login-register form input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%; /* Ensure inputs take full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-.login-register form button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  align-self: center; /* Center align the button */
-}
-
-.separator {
-  text-align: center;
-  margin: auto;
-  color: #999;
-  font-weight: bold;
-}
-
-/* Profile Styles */
-.profile-container {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.profile-avatar img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-right: 20px;
-}
-
-.profile-info h2 {
-  margin-top: 0;
-}
-
-.user-posts {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.user-posts h2 {
-  margin-top: 0;
-}
-
-.user-posts ul {
-  list-style: none;
-  padding: 0;
-}
-
-.user-posts li {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Styles for Google Auth Button */
-.google-auth-button {
-  background-color: #4285f4;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: 100%; /* Full width for consistency */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  font-size: 16px; /* Adjust font size for better readability */
-  margin-top: 10px; /* Add some margin on top for spacing */
-  text-decoration: none; /* Remove underline from link */
+  gap: 24px;
+  margin-top: 40px;
 }
 
-.google-auth-button i {
-  margin-right: 10px; /* Space between the icon and text */
-  font-size: 18px; /* Adjust icon size */
+.login-register .auth-card {
+  background: #fff;
+  border: 2px solid #fbbf24;
+  border-radius: 20px;
+  padding: 28px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
 }
 
-.google-auth-button:hover {
-  background-color: #357ae8;
+.login-register .auth-card h2 {
+  font-weight: 800;
+  font-size: 20px;
+  color: #451a03;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.google-auth-button:focus {
+.login-register .auth-card label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #78350f;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.login-register .auth-card input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #fde68a;
+  border-radius: 12px;
+  background: #fffbeb;
+  font-family: inherit;
+  font-size: 14px;
+  color: #451a03;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5);
+  margin-bottom: 14px;
+  transition: border-color 0.15s;
+}
+.login-register .auth-card input:focus {
+  border-color: #f59e0b;
 }
 
-/* Update login-register form styles */
-.login-register form button,
-.login-register a.google-auth-button {
-  align-self: center; /* Center align the button */
-}
-
-.login-register a.google-auth-button {
-  display: flex; /* Use flexbox to align items */
-  align-items: center;
-  justify-content: center;
-}
-
-/* Part B */
-
-/* Registration Username Page Styles */
-.register-username {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10% auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 50%;
-}
-
-.register-username h2 {
-  margin-bottom: 20px;
-}
-
-.register-username form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.register-username form div {
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.register-username form label {
-  margin-bottom: 5px;
-  width: 100%;
-}
-
-.register-username form input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.register-username form button {
-  background-color: #007bff;
+.login-register .auth-card .auth-btn {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
   color: #fff;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 14px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 20px;
+  padding: 12px;
   cursor: pointer;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-top: 4px;
+}
+.login-register .auth-card .auth-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.45);
+}
+
+.login-register .separator {
+  font-weight: 800;
+  color: #a16207;
   align-self: center;
+  font-size: 16px;
 }
 
-/* Google Logout Page Styles */
-.google-logout {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
-  font-size: 1.5rem;
-}
-
-/* Error Page Styles */
-.error-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+.error-msg {
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
   text-align: center;
-  font-size: 2rem;
-  color: #333;
 }
 
-.error-page h1 {
-  margin-bottom: 20px;
+.success-msg {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.error-page p {
-  font-size: 1.2rem;
-}
-
-/* Profile Page Styles */
-.profile-container {
+.google-auth-button {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #4285f4;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 14px;
+  transition: background 0.15s;
+}
+.google-auth-button:hover {
+  background: #357ae8;
+  text-decoration: none;
 }
 
-.profile-avatar img {
+.login-register .or-text {
+  font-size: 12px;
+  color: #a16207;
+  text-align: center;
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+/* ── Profile page ── */
+.profile-hero {
+  background: #fff;
+  border: 2px solid #fbbf24;
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.profile-hero .profile-avatar {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-right: 20px;
+  border: 4px solid #f59e0b;
+  flex-shrink: 0;
 }
 
-.profile-info h2 {
-  margin-top: 0;
+.profile-hero .profile-info h2 {
+  font-weight: 800;
+  font-size: 22px;
+  color: #451a03;
+  margin-bottom: 4px;
 }
 
-.user-posts {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.profile-hero .profile-info p {
+  font-size: 13px;
+  color: #a16207;
+  margin-bottom: 4px;
+}
+
+.profile-hero .profile-info .profile-stat {
+  font-size: 13px;
+  color: #78350f;
+  font-weight: 600;
+}
+
+.profile-hero .delete-account-btn {
+  margin-left: auto;
+  background: #dc2626;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.profile-hero .delete-account-btn:hover {
+  background: #b91c1c;
 }
 
 .user-posts h2 {
-  margin-top: 0;
+  font-weight: 800;
+  font-size: 18px;
+  color: #451a03;
+  margin-bottom: 16px;
 }
 
 .user-posts ul {
   list-style: none;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.user-posts li {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.sort-options {
-  text-align: right;
-  margin: 20px auto;
-}
-
-.sort-options label {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.sort-options select {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.delete-account-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-.delete-account-button:hover {
-  background-color: darkred;
-}
-
-/* editPost.css */
+/* ── Edit post ── */
 .edit-post-container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 640px;
+  margin: 24px auto;
 }
 
 .edit-post-container h2 {
+  font-weight: 800;
+  font-size: 20px;
+  color: #451a03;
+  margin-bottom: 20px;
   text-align: center;
-  color: #333;
+}
+
+/* ── Register username ── */
+.register-username {
+  max-width: 440px;
+  margin: 60px auto;
+}
+
+.register-username h2 {
+  font-weight: 800;
+  font-size: 20px;
+  color: #451a03;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.edit-post-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.register-username label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #78350f;
+  display: block;
+  margin-bottom: 4px;
 }
 
-.edit-post-container label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.edit-post-container input[type="text"],
-.edit-post-container textarea {
+.register-username input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.edit-post-container input[type="text"]:focus,
-.edit-post-container textarea:focus {
-  border-color: #007bff;
+  padding: 10px 14px;
+  border: 2px solid #fde68a;
+  border-radius: 12px;
+  background: #fffbeb;
+  font-family: inherit;
+  font-size: 14px;
+  color: #451a03;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  margin-bottom: 16px;
+}
+.register-username input:focus {
+  border-color: #f59e0b;
 }
 
-.edit-post-container textarea {
-  resize: vertical;
-}
-
-.edit-post-container .form-actions {
-  display: flex;
-  justify-content: center;
-}
-
-.edit-post-container button {
-  padding: 10px 20px;
-  font-size: 16px;
+.register-username .auth-btn {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
   color: #fff;
-  background-color: #007bff;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 14px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
+  padding: 12px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
 }
 
-.edit-post-container button:hover {
-  background-color: #0056b3;
+/* ── Error page ── */
+.error-page {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.error-page h2 {
+  font-weight: 800;
+  font-size: 24px;
+  color: #451a03;
+  margin-bottom: 12px;
+}
+
+.error-page p {
+  font-size: 14px;
+  color: #78350f;
+  margin-bottom: 8px;
+}
+
+/* ── Footer ── */
+.footer {
+  background: #451a03;
+  color: #fbbf24;
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  margin-top: auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .sidebar .card {
+    min-width: 220px;
+  }
+  .header {
+    padding: 0 12px;
+  }
+  .header-brand span {
+    font-size: 20px;
+  }
+  .header-nav li a {
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+  .page-wrap {
+    padding: 0 10px;
+    margin: 12px auto;
+  }
+  .login-register {
+    flex-direction: column;
+    align-items: center;
+  }
+  .login-register .auth-card {
+    width: 100%;
+    max-width: 400px;
+  }
+  .profile-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-hero .delete-account-btn {
+    margin-left: 0;
+    margin-top: 12px;
+  }
 }
