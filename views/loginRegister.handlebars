@@ -1,53 +1,42 @@
-<!-- loginRegister.handlebars -->
 {{#> main}}
 <section class="login-register">
-    <section class="login-area">
+    <div class="auth-card">
         <h2>Login</h2>
         {{#if loginError}}
-            <p style="color: red;">{{loginError}}</p>
+            <p class="error-msg">{{loginError}}</p>
         {{/if}}
         <form action="/login" method="POST">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" name="username" required>
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit" class="auth-btn">Login</button>
         </form>
-        <p>Or login with:</p>
+        <p class="or-text">Or login with:</p>
         <a href="/auth/google" class="google-auth-button">
             <i class="fab fa-google"></i> Sign in with Google
         </a>
-    </section>
+    </div>
 
-    <p class="separator">OR</p>
+    <span class="separator">OR</span>
 
-    <section class="register-area">
+    <div class="auth-card">
         <h2>Register</h2>
         {{#if registerError}}
-            <p style="color: red;">{{registerError}}</p>
+            <p class="error-msg">{{registerError}}</p>
         {{/if}}
         {{#if registerSuccess}}
-            <p style="color: blue;">{{registerSuccess}}</p>
+            <p class="success-msg">{{registerSuccess}}</p>
         {{/if}}
         <form action="/register" method="POST">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-            </div>
-            <button type="submit">Register</button>
+            <label for="reg-username">Username</label>
+            <input type="text" id="reg-username" name="username" required>
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" name="password" required>
+            <label for="reg-confirm">Confirm Password</label>
+            <input type="password" id="reg-confirm" name="confirmPassword" required>
+            <button type="submit" class="auth-btn">Register</button>
         </form>
-    </section>
+    </div>
 </section>
 {{/main}}
