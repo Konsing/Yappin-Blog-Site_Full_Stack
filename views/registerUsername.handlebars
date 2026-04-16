@@ -1,16 +1,13 @@
-<!-- registerUsername.handlebars -->
 {{#> main}}
-<section class="register-username">
-    <h2>Register Username</h2>
+<div class="register-username card">
+    <h2>Choose a Username</h2>
     {{#if error}}
-        <p style="color: red;">{{error}}</p>
+        <p class="error-msg">{{error}}</p>
     {{/if}}
     <form action="/registerUsername" method="POST">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <button type="submit">Register</button>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit" class="auth-btn">Register</button>
     </form>
-</section>
+</div>
 {{/main}}
