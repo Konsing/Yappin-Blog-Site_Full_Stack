@@ -3,7 +3,7 @@
         <img src="{{#if this.avatar_url}}{{this.avatar_url}}{{else}}/avatar/{{this.username}}{{/if}}" alt="Avatar" class="post-avatar">
         <div class="post-meta">
             <div class="post-author">{{username}}</div>
-            <div class="post-date">{{timestamp}}</div>
+            <div class="post-date">{{formatDate timestamp}}</div>
         </div>
     </div>
 

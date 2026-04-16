@@ -4,7 +4,7 @@
         <div class="card sidebar-profile">
             <img src="{{#if user.avatar_url}}{{user.avatar_url}}{{else}}/avatar/{{user.username}}{{/if}}" alt="Avatar" class="sidebar-avatar">
             <div class="username">{{user.username}}</div>
-            <div class="member-since">Member since {{user.createdAt}}</div>
+            <div class="member-since">Member since {{formatDate user.createdAt}}</div>
             {{#if userStats}}
             <div class="sidebar-stats">
                 <span><i class="fas fa-pen"></i> {{userStats.postCount}} posts</span>

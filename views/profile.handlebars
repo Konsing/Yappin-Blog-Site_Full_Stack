@@ -3,7 +3,7 @@
     <img src="{{#if user.avatar_url}}{{user.avatar_url}}{{else}}/avatar/{{user.username}}{{/if}}" alt="Avatar" class="profile-avatar">
     <div class="profile-info">
         <h2>{{user.username}}</h2>
-        <p>Member since {{user.createdAt}}</p>
+        <p>Member since {{formatDate user.createdAt}}</p>
         {{#if userStats}}
             <span class="profile-stat">{{userStats.postCount}} posts &middot; {{userStats.totalLikes}} likes received</span>
         {{/if}}

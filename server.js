@@ -126,6 +126,26 @@ async function initializeDB() {
       console.log("Added posts.isMarkdown column.");
     }
 
+    // Migrate locale-format timestamps (e.g. "6/5/2024, 3:38:00 PM") to ISO format
+    const posts = await db.all("SELECT id, timestamp FROM posts");
+    for (const p of posts) {
+      if (p.timestamp && !p.timestamp.match(/^\d{4}-/)) {
+        const d = new Date(p.timestamp);
+        if (!isNaN(d.getTime())) {
+          await db.run("UPDATE posts SET timestamp = ? WHERE id = ?", [d.toISOString(), p.id]);
+        }
+      }
+    }
+    const users = await db.all("SELECT id, memberSince FROM users");
+    for (const u of users) {
+      if (u.memberSince && !u.memberSince.match(/^\d{4}-/)) {
+        const d = new Date(u.memberSince);
+        if (!isNaN(d.getTime())) {
+          await db.run("UPDATE users SET memberSince = ? WHERE id = ?", [d.toISOString(), u.id]);
+        }
+      }
+    }
+
     console.log("Database initialized successfully");
   } catch (error) {
     console.error("Failed to initialize the database:", error);
@@ -154,7 +174,7 @@ if (googleOAuthEnabled) {
               id: null,
               username: null,
               hashedGoogleId: profile.id,
-              memberSince: new Date().toLocaleString(),
+              memberSince: new Date().toISOString(),
             };
           }
           return done(null, user);
@@ -213,6 +233,12 @@ app.engine(
       includes: function (array, value, options) {
         if (array && array.includes(value)) return options.fn(this);
         return options.inverse(this);
+      },
+      formatDate: function (isoString) {
+        if (!isoString) return "";
+        const d = new Date(isoString);
+        if (isNaN(d.getTime())) return isoString;
+        return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
       },
     },
   })
@@ -329,7 +355,7 @@ const registerHandler = async (req, res) => {
 
     await db.run(
       "INSERT INTO users (username, hashedGoogleId, avatar_url, memberSince, passwordHash) VALUES (?, ?, ?, ?, ?)",
-      [username, localSentinel, null, new Date().toLocaleString(), passwordHash]
+      [username, localSentinel, null, new Date().toISOString(), passwordHash]
     );
 
     req.session.registerSuccess = "Registered Successfully";
@@ -446,7 +472,7 @@ app.post("/registerUsername", async (req, res) => {
 
     await db.run(
       "INSERT INTO users (username, hashedGoogleId, avatar_url, memberSince) VALUES (?, ?, ?, ?)",
-      [username, req.session.passport.hashedGoogleId, null, new Date().toLocaleString()]
+      [username, req.session.passport.hashedGoogleId, null, new Date().toISOString()]
     );
 
     const user = await db.get("SELECT * FROM users WHERE username = ?", [username]);
@@ -481,7 +507,7 @@ const createPostHandler = async (req, res) => {
 
   await db.run(
     "INSERT INTO posts (title, content, username, timestamp, likes, isMarkdown) VALUES (?, ?, ?, ?, ?, ?)",
-    [title, content, req.session.user.username, new Date().toLocaleString(), 0, 1]
+    [title, content, req.session.user.username, new Date().toISOString(), 0, 1]
   );
   res.redirect("/");
 };
