@@ -133,7 +133,9 @@ async function initializeDB() {
   }
 }
 
-if (process.env.CLIENT_ID && process.env.CLIENT_SECRET) {
+const googleOAuthEnabled = !!(process.env.CLIENT_ID && process.env.CLIENT_SECRET);
+
+if (googleOAuthEnabled) {
   passport.use(
     new GoogleStrategy(
       {
@@ -275,6 +277,7 @@ const loginPageHandler = (req, res) => {
     title: "Login",
     formType: "Login",
     isLogin: true,
+    googleOAuthEnabled,
     showNavBar: false,
     layout: "main",
   });
@@ -285,6 +288,7 @@ const registerPageHandler = (req, res) => {
     title: "Register",
     formType: "Register",
     isLogin: false,
+    googleOAuthEnabled,
     showNavBar: false,
     layout: "main",
     registerSuccess: req.session.registerSuccess || null,
@@ -299,14 +303,14 @@ const registerHandler = async (req, res) => {
     return res.status(400).render("loginRegister", {
       formType: "Register", isLogin: false,
       registerError: "All fields are required.",
-      showNavBar: false, layout: "main",
+      googleOAuthEnabled, showNavBar: false, layout: "main",
     });
   }
   if (password !== confirmPassword) {
     return res.status(400).render("loginRegister", {
       formType: "Register", isLogin: false,
       registerError: "Passwords do not match.",
-      showNavBar: false, layout: "main",
+      googleOAuthEnabled, showNavBar: false, layout: "main",
     });
   }
 
@@ -316,7 +320,7 @@ const registerHandler = async (req, res) => {
       return res.status(400).render("loginRegister", {
         formType: "Register", isLogin: false,
         registerError: "User already exists.",
-        showNavBar: false, layout: "main",
+        googleOAuthEnabled, showNavBar: false, layout: "main",
       });
     }
 
@@ -335,7 +339,7 @@ const registerHandler = async (req, res) => {
     res.status(500).render("loginRegister", {
       formType: "Register", isLogin: false,
       registerError: "Server error.",
-      showNavBar: false, layout: "main",
+      googleOAuthEnabled, showNavBar: false, layout: "main",
     });
   }
 };
@@ -347,7 +351,7 @@ const loginHandler = async (req, res) => {
     return res.status(400).render("loginRegister", {
       formType: "Login", isLogin: true,
       loginError: "All fields are required.",
-      showNavBar: false, layout: "main",
+      googleOAuthEnabled, showNavBar: false, layout: "main",
     });
   }
 
@@ -361,7 +365,7 @@ const loginHandler = async (req, res) => {
       return res.status(400).render("loginRegister", {
         formType: "Login", isLogin: true,
         loginError: "Invalid credentials.",
-        showNavBar: false, layout: "main",
+        googleOAuthEnabled, showNavBar: false, layout: "main",
       });
     }
 
@@ -383,7 +387,7 @@ const loginHandler = async (req, res) => {
     res.status(500).render("loginRegister", {
       formType: "Login", isLogin: true,
       loginError: "Server error.",
-      showNavBar: false, layout: "main",
+      googleOAuthEnabled, showNavBar: false, layout: "main",
     });
   }
 };
@@ -395,31 +399,33 @@ const logoutHandler = (req, res, next) => {
   });
 };
 
-app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }));
+if (googleOAuthEnabled) {
+  app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }));
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  async (req, res) => {
-    if (!req.user || !req.user.hashedGoogleId) return res.redirect("/login");
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google", { failureRedirect: "/login" }),
+    async (req, res) => {
+      if (!req.user || !req.user.hashedGoogleId) return res.redirect("/login");
 
-    const user = await db.get("SELECT * FROM users WHERE hashedGoogleId = ?", [
-      req.user.hashedGoogleId,
-    ]);
-    if (user) {
-      req.session.user = {
-        id: user.id,
-        loggedIn: true,
-        username: user.username,
-        createdAt: user.memberSince,
-      };
-      res.redirect("/");
-    } else {
-      req.session.passport = req.user;
-      res.redirect("/registerUsername");
+      const user = await db.get("SELECT * FROM users WHERE hashedGoogleId = ?", [
+        req.user.hashedGoogleId,
+      ]);
+      if (user) {
+        req.session.user = {
+          id: user.id,
+          loggedIn: true,
+          username: user.username,
+          createdAt: user.memberSince,
+        };
+        res.redirect("/");
+      } else {
+        req.session.passport = req.user;
+        res.redirect("/registerUsername");
     }
   }
-);
+  );
+}
 
 app.get("/registerUsername", (req, res) => {
   res.render("registerUsername", { error: req.session.error, layout: "main" });

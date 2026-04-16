@@ -12,10 +12,12 @@
             <input type="password" id="login-password" name="password" required>
             <button type="submit" class="auth-btn">Login</button>
         </form>
+        {{#if googleOAuthEnabled}}
         <p class="or-text">Or login with:</p>
         <a href="/auth/google" class="google-auth-button">
             <i class="fab fa-google"></i> Sign in with Google
         </a>
+        {{/if}}
     </div>
 
     <span class="separator">OR</span>
