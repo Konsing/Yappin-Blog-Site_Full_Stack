@@ -10,13 +10,17 @@
 }
 
 /* ── Base ── */
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Nunito", Arial, sans-serif;
   font-weight: 400;
   font-size: 21px;
   color: #451a03;
   background: #fef7ed;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -107,7 +111,7 @@ img {
 
 /* ── Page wrapper ── */
 .page-wrap {
-  flex: 1;
+  flex: 1 0 auto;
   width: 100%;
   max-width: 1440px;
   margin: 36px auto;
@@ -793,12 +797,14 @@ img {
 
 /* ── Footer ── */
 .footer {
-  background: #451a03;
-  color: #fbbf24;
+  flex-shrink: 0;
+  background: #fff;
+  color: #78350f;
+  border-top: 3px solid #fbbf24;
   text-align: center;
   padding: 24px;
   font-size: 20px;
-  margin-top: auto;
+  font-weight: 600;
 }
 
 /* ── Responsive ── */

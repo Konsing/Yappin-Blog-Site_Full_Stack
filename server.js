@@ -156,12 +156,23 @@ async function initializeDB() {
 const googleOAuthEnabled = !!(process.env.CLIENT_ID && process.env.CLIENT_SECRET);
 
 if (googleOAuthEnabled) {
+  const callbackURL = `http://localhost:${PORT}/auth/google/callback`;
+  console.log("[oauth] Google OAuth enabled");
+  console.log("[oauth]   callbackURL =", callbackURL);
+  console.log(
+    "[oauth]   CLIENT_ID     =",
+    (process.env.CLIENT_ID || "").slice(0, 16) + "... (len " + (process.env.CLIENT_ID || "").length + ")"
+  );
+  console.log(
+    "[oauth]   CLIENT_SECRET present, length =",
+    (process.env.CLIENT_SECRET || "").length
+  );
   passport.use(
     new GoogleStrategy(
       {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: `http://localhost:${PORT}/auth/google/callback`,
+        callbackURL,
       },
       async (token, tokenSecret, profile, done) => {
         try {
@@ -428,10 +439,24 @@ const logoutHandler = (req, res, next) => {
 if (googleOAuthEnabled) {
   app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }));
 
-  app.get(
-    "/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "/login" }),
-    async (req, res) => {
+  app.get("/auth/google/callback", (req, res, next) => {
+    passport.authenticate("google", (err, user) => {
+      if (err) {
+        console.error("[oauth] callback error:", err.name, "-", err.message);
+        if (err.oauthError) {
+          console.error("[oauth]   oauthError.statusCode =", err.oauthError.statusCode);
+          console.error("[oauth]   oauthError.data       =", err.oauthError.data);
+        }
+        if (err.code) console.error("[oauth]   code =", err.code);
+        return res.redirect("/login");
+      }
+      if (!user) return res.redirect("/login");
+      req.logIn(user, (loginErr) => {
+        if (loginErr) return next(loginErr);
+        next();
+      });
+    })(req, res, next);
+  }, async (req, res) => {
       if (!req.user || !req.user.hashedGoogleId) return res.redirect("/login");
 
       const user = await db.get("SELECT * FROM users WHERE hashedGoogleId = ?", [

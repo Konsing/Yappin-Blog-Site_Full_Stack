@@ -1,2 +1,10 @@
 node_modules
 npm-debug.log
+.env
+*.db
+*.db-journal
+*.db.bak
+.git
+.gitignore
+*.mp4
+README.md

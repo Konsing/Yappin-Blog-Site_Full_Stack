@@ -63,46 +63,6 @@
 
 ---
 
-## Setup
-
-**1. Clone and install**
-```sh
-git clone https://github.com/Konsing/Yappin-Blog-Site_Full_Stack.git
-cd Yappin-Blog-Site_Full_Stack
-npm install
-```
-
-**2. Configure environment**
-
-Copy the example and fill in your values:
-```sh
-cp .env.example .env
-```
-
-| Variable | Required | Where to get it |
-|----------|----------|----------------|
-| `CLIENT_ID` | For Google login | [Google Cloud Console](https://console.cloud.google.com) > APIs & Services > Credentials > OAuth client ID |
-| `CLIENT_SECRET` | For Google login | Same as above |
-| `SESSION_SECRET` | Yes | Any random string (`node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`) |
-| `EMOJI_API_KEY` | For emoji picker | [emoji-api.com](https://emoji-api.com) |
-| `PORT` | No (default 3000) | — |
-
-Google OAuth redirect URI must be set to `http://localhost:3000/auth/google/callback`.
-
-**3. Seed the database (optional)**
-```sh
-npm run populate-db
-```
-
-**4. Run**
-```sh
-npm start
-```
-
-Open `http://localhost:3000/`.
-
----
-
 ## Docker
 
 ```sh
@@ -119,31 +79,25 @@ docker run -p 3000:3000 --env-file .env yappin
 **Login / Register:**
 
 <p align="left">
-  <img src="images/Login_Screen.png" width="650">
+  <img src="images/loginscreen.png" width="650">
 </p>
 
 **Homepage (Logged In):**
 
 <p align="left">
-  <img src="images/Home_Screen.png" width="650">
+  <img src="images/dashboardloggedin.png" width="650">
 </p>
 
 **Homepage (Not Logged In):**
 
 <p align="left">
-  <img src="images/Not_LoggedIn.png" width="650">
-</p>
-
-**Creating a Post:**
-
-<p align="left">
-  <img src="images/Create_Post.png" width="650">
+  <img src="images/dashboardnotloggedin.png" width="650">
 </p>
 
 **Profile Page:**
 
 <p align="left">
-  <img src="images/My_Posts.png" width="650">
+  <img src="images/profileview.png" width="650">
 </p>
 
 ---

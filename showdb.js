@@ -2,7 +2,6 @@ const sqlite = require("sqlite");
 const sqlite3 = require("sqlite3");
 const { open } = sqlite;
 
-// Placeholder for the database file name
 const dbFileName = "microblog.db";
 
 async function showDatabaseContents() {
@@ -10,18 +9,15 @@ async function showDatabaseContents() {
 
   console.log("Opening database file:", dbFileName);
 
-  // Check if the users table exists
   const usersTableExists = await db.get(
     `SELECT name FROM sqlite_master WHERE type='table' AND name='users';`
   );
   if (usersTableExists) {
     console.log("Users table exists.");
-    const users = await db.all("SELECT * FROM users");
+    const users = await db.all("SELECT id, username, memberSince FROM users");
     if (users.length > 0) {
       console.log("Users:");
-      users.forEach((user) => {
-        console.log(user);
-      });
+      users.forEach((user) => console.log(user));
     } else {
       console.log("No users found.");
     }
@@ -29,18 +25,15 @@ async function showDatabaseContents() {
     console.log("Users table does not exist.");
   }
 
-  // Check if the posts table exists
   const postsTableExists = await db.get(
     `SELECT name FROM sqlite_master WHERE type='table' AND name='posts';`
   );
   if (postsTableExists) {
     console.log("Posts table exists.");
-    const posts = await db.all("SELECT * FROM posts");
+    const posts = await db.all("SELECT id, title, username, timestamp, likes, isMarkdown FROM posts");
     if (posts.length > 0) {
       console.log("Posts:");
-      posts.forEach((post) => {
-        console.log(post);
-      });
+      posts.forEach((post) => console.log(post));
     } else {
       console.log("No posts found.");
     }
@@ -54,39 +47,3 @@ async function showDatabaseContents() {
 showDatabaseContents().catch((err) => {
   console.error("Error showing database contents:", err);
 });
-
-// const sqlite = require('sqlite');
-// const sqlite3 = require('sqlite3');
-// const { open } = sqlite;
-
-// // Placeholder for the database file name
-// const dbFileName = 'microblog.db';
-
-// async function showDatabaseContents() {
-//     const db = await open({ filename: dbFileName, driver: sqlite3.Database });
-
-//     console.log('Opening database file:', dbFileName);
-
-//     // Check if the users table exists
-//     const usersTableExists = await db.get(`SELECT name FROM sqlite_master WHERE type='table' AND name='users';`);
-//     if (usersTableExists) {
-//         console.log('Users table exists.');
-//         const users = await db.all('SELECT username, hashedGoogleId FROM users');
-//         if (users.length > 0) {
-//             console.log('Users and their passwords:');
-//             users.forEach(user => {
-//                 console.log(`Username: ${user.username}, Password: ${user.hashedGoogleId}`);
-//             });
-//         } else {
-//             console.log('No users found.');
-//         }
-//     } else {
-//         console.log('Users table does not exist.');
-//     }
-
-//     await db.close();
-// }
-
-// showDatabaseContents().catch(err => {
-//     console.error('Error showing database contents:', err);
-// });

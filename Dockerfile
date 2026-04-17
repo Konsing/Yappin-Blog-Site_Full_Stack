@@ -1,20 +1,15 @@
-# Use the official Node.js image as a base image
-FROM node:14
+FROM node:20-alpine
 
-# Set the working directory
+RUN apk add --no-cache build-base g++ cairo-dev jpeg-dev pango-dev giflib-dev librsvg-dev python3
+
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+RUN npm ci --omit=dev
 
-# Copy the rest of the application code to the working directory
 COPY . .
 
-# Expose the port the application runs on
 EXPOSE 3000
 
-# Define the command to run the application
 CMD ["node", "server.js"]
