@@ -13,7 +13,7 @@
 body {
   font-family: "Nunito", Arial, sans-serif;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 21px;
   color: #451a03;
   background: #fef7ed;
   min-height: 100vh;
@@ -40,9 +40,9 @@ img {
   top: 0;
   z-index: 100;
   background: #fffbeb;
-  border-bottom: 6px solid #f59e0b;
-  padding: 0 48px;
-  height: 120px;
+  border-bottom: 4px solid #f59e0b;
+  padding: 0 36px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,7 +51,7 @@ img {
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   text-decoration: none;
 }
 .header-brand:hover {
@@ -59,36 +59,36 @@ img {
 }
 
 .header-brand img {
-  width: 88px;
-  height: 88px;
-  border-radius: 20px;
+  width: 66px;
+  height: 66px;
+  border-radius: 15px;
 }
 
 .header-brand span {
   font-weight: 800;
-  font-size: 52px;
+  font-size: 39px;
   color: #92400e;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .header-nav {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .header-nav li a {
   display: block;
-  padding: 12px 28px;
-  border-radius: 40px;
+  padding: 9px 21px;
+  border-radius: 30px;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 21px;
   color: #78350f;
   transition: background 0.15s;
 }
@@ -98,46 +98,46 @@ img {
 }
 
 .header-avatar {
-  width: 72px;
-  height: 72px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  margin-left: 16px;
-  border: 4px solid #fbbf24;
+  margin-left: 12px;
+  border: 3px solid #fbbf24;
 }
 
 /* ── Page wrapper ── */
 .page-wrap {
   flex: 1;
   width: 100%;
-  max-width: 1920px;
-  margin: 48px auto;
-  padding: 0 32px;
+  max-width: 1440px;
+  margin: 36px auto;
+  padding: 0 24px;
 }
 
 /* ── Main layout (sidebar + feed) ── */
 .main-layout {
   display: flex;
-  gap: 48px;
+  gap: 36px;
   align-items: flex-start;
 }
 
 /* ── Sidebar ── */
 .sidebar {
-  width: 520px;
+  width: 390px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
   position: sticky;
-  top: 168px;
+  top: 126px;
 }
 
 /* ── Card (shared) ── */
 .card {
   background: #fff;
-  border: 4px solid #fbbf24;
-  border-radius: 40px;
-  padding: 40px;
+  border: 3px solid #fbbf24;
+  border-radius: 30px;
+  padding: 30px;
 }
 
 /* ── Sidebar profile card ── */
@@ -149,59 +149,59 @@ img {
 }
 
 .sidebar-avatar {
-  width: 144px;
-  height: 144px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
-  border: 6px solid #f59e0b;
-  margin-bottom: 20px;
+  border: 4px solid #f59e0b;
+  margin-bottom: 15px;
 }
 
 .sidebar-profile .username {
   font-weight: 800;
-  font-size: 32px;
+  font-size: 24px;
   color: #451a03;
 }
 
 .sidebar-profile .member-since {
-  font-size: 24px;
+  font-size: 18px;
   color: #a16207;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .sidebar-stats {
   width: 100%;
-  border-top: 4px solid #fef3c7;
-  padding-top: 24px;
+  border-top: 3px solid #fef3c7;
+  padding-top: 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  font-size: 26px;
+  gap: 9px;
+  font-size: 20px;
   color: #78350f;
 }
 
 .sidebar-stats span {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 9px;
 }
 
 /* ── Sidebar community card ── */
 .community-stats {
-  font-size: 26px;
+  font-size: 20px;
   color: #78350f;
 }
 
 .community-stats h3 {
   font-weight: 800;
-  font-size: 28px;
+  font-size: 21px;
   color: #451a03;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .community-stats .stat-row {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 6px 0;
   border-bottom: 2px solid #fef3c7;
 }
 .community-stats .stat-row:last-child {
@@ -223,7 +223,7 @@ img {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 /* ── Sort bar ── */
@@ -235,17 +235,17 @@ img {
 
 .sort-bar h2 {
   font-weight: 800;
-  font-size: 40px;
+  font-size: 30px;
   color: #451a03;
 }
 
 .sort-bar select {
-  padding: 12px 24px;
-  border: 4px solid #fde68a;
-  border-radius: 24px;
+  padding: 9px 18px;
+  border: 3px solid #fde68a;
+  border-radius: 18px;
   background: #fffbeb;
   font-family: inherit;
-  font-size: 26px;
+  font-size: 20px;
   color: #78350f;
   cursor: pointer;
 }
@@ -253,20 +253,20 @@ img {
 /* ── Compose box ── */
 .compose {
   background: #fff;
-  border: 4px solid #fbbf24;
-  border-radius: 40px;
-  padding: 40px;
+  border: 3px solid #fbbf24;
+  border-radius: 30px;
+  padding: 30px;
 }
 
 .compose input[type="text"],
 .compose textarea {
   width: 100%;
-  padding: 20px 28px;
-  border: 4px solid #fde68a;
-  border-radius: 24px;
+  padding: 15px 21px;
+  border: 3px solid #fde68a;
+  border-radius: 18px;
   background: #fffbeb;
   font-family: inherit;
-  font-size: 28px;
+  font-size: 21px;
   color: #451a03;
   outline: none;
   transition: border-color 0.15s;
@@ -277,31 +277,31 @@ img {
 }
 
 .compose input[type="text"] {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .compose textarea {
-  min-height: 160px;
+  min-height: 120px;
   resize: vertical;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .compose-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 18px;
 }
 
 .compose-actions .emoji-btn {
   background: none;
   border: none;
-  font-size: 44px;
+  font-size: 33px;
   cursor: pointer;
-  padding: 8px;
+  padding: 6px;
 }
 
 .compose-actions .md-link {
-  font-size: 24px;
+  font-size: 18px;
   color: #a16207;
 }
 
@@ -311,51 +311,51 @@ img {
   color: #fff;
   font-family: inherit;
   font-weight: 800;
-  font-size: 28px;
+  font-size: 21px;
   border: none;
-  border-radius: 40px;
-  padding: 20px 56px;
+  border-radius: 30px;
+  padding: 15px 42px;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 3px 12px rgba(245, 158, 11, 0.3);
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .compose-actions .post-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
 }
 
 /* ── Emoji panel ── */
 .emoji-panel {
   background: #fffbeb;
-  border: 4px solid #fde68a;
-  border-radius: 24px;
-  padding: 24px;
-  margin-top: 24px;
+  border: 3px solid #fde68a;
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 18px;
 }
 
 .emoji-panel input {
   width: 100%;
-  padding: 16px 24px;
-  border: 4px solid #fde68a;
-  border-radius: 20px;
+  padding: 12px 18px;
+  border: 3px solid #fde68a;
+  border-radius: 15px;
   background: #fff;
   font-family: inherit;
-  font-size: 26px;
-  margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 15px;
   outline: none;
 }
 
 .emoji-panel .emoji-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
 }
 
 .emoji-panel .emoji-grid span {
-  font-size: 48px;
+  font-size: 36px;
   cursor: pointer;
-  padding: 4px;
-  border-radius: 12px;
+  padding: 3px;
+  border-radius: 9px;
   transition: background 0.1s;
 }
 .emoji-panel .emoji-grid span:hover {
@@ -365,51 +365,51 @@ img {
 /* ── Post card ── */
 .post-card {
   background: #fff;
-  border: 4px solid #fbbf24;
-  border-radius: 40px;
-  padding: 40px;
+  border: 3px solid #fbbf24;
+  border-radius: 30px;
+  padding: 30px;
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(251, 191, 36, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(251, 191, 36, 0.2);
 }
 
 .post-header {
   display: flex;
   align-items: center;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 18px;
+  margin-bottom: 18px;
 }
 
 .post-avatar {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: 4px solid #f59e0b;
+  border: 3px solid #f59e0b;
   flex-shrink: 0;
 }
 
 .post-meta .post-author {
   font-weight: 700;
-  font-size: 28px;
+  font-size: 21px;
   color: #451a03;
 }
 
 .post-meta .post-date {
-  font-size: 24px;
+  font-size: 18px;
   color: #a16207;
 }
 
 .post-title {
   font-weight: 800;
-  font-size: 34px;
+  font-size: 26px;
   color: #451a03;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .post-body {
-  font-size: 28px;
+  font-size: 21px;
   line-height: 1.6;
   color: #78350f;
   word-wrap: break-word;
@@ -417,24 +417,24 @@ img {
 }
 
 .post-body img {
-  border-radius: 24px;
-  margin: 16px 0;
+  border-radius: 18px;
+  margin: 12px 0;
 }
 
 .post-body pre {
   background: #451a03;
   color: #fbbf24;
-  padding: 28px;
-  border-radius: 24px;
+  padding: 21px;
+  border-radius: 18px;
   overflow-x: auto;
-  margin: 16px 0;
+  margin: 12px 0;
 }
 
 .post-body code {
   background: #fef3c7;
-  padding: 4px 12px;
-  border-radius: 8px;
-  font-size: 26px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 20px;
 }
 
 .post-body pre code {
@@ -444,24 +444,24 @@ img {
 }
 
 .post-footer {
-  border-top: 4px solid #fef3c7;
-  margin-top: 28px;
-  padding-top: 20px;
+  border-top: 3px solid #fef3c7;
+  margin-top: 21px;
+  padding-top: 15px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 18px;
 }
 
 .upvote-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 28px;
-  border-radius: 40px;
-  border: 4px solid #fde68a;
+  gap: 9px;
+  padding: 8px 21px;
+  border-radius: 30px;
+  border: 3px solid #fde68a;
   background: #fffbeb;
   font-family: inherit;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
   color: #a16207;
   cursor: pointer;
@@ -480,14 +480,14 @@ img {
 .post-footer .edit-link,
 .post-footer .delete-form button {
   font-family: inherit;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
   color: #a16207;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 16px;
+  padding: 6px 12px;
+  border-radius: 12px;
   transition: background 0.15s;
 }
 .post-footer .edit-link:hover,
@@ -498,7 +498,7 @@ img {
 
 .post-footer .like-count {
   margin-left: auto;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
   color: #a16207;
 }
@@ -506,8 +506,8 @@ img {
 /* ── No-posts message ── */
 .no-posts {
   text-align: center;
-  padding: 80px 40px;
-  font-size: 32px;
+  padding: 60px 30px;
+  font-size: 24px;
   color: #a16207;
   font-weight: 600;
 }
@@ -516,47 +516,47 @@ img {
 .login-register {
   display: flex;
   justify-content: center;
-  gap: 48px;
-  margin-top: 80px;
+  gap: 36px;
+  margin-top: 60px;
 }
 
 .login-register .auth-card {
   background: #fff;
-  border: 4px solid #fbbf24;
-  border-radius: 40px;
-  padding: 56px;
-  width: 760px;
+  border: 3px solid #fbbf24;
+  border-radius: 30px;
+  padding: 42px;
+  width: 570px;
   display: flex;
   flex-direction: column;
 }
 
 .login-register .auth-card h2 {
   font-weight: 800;
-  font-size: 40px;
+  font-size: 30px;
   color: #451a03;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .login-register .auth-card label {
   font-weight: 600;
-  font-size: 26px;
+  font-size: 20px;
   color: #78350f;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   display: block;
 }
 
 .login-register .auth-card input {
   width: 100%;
-  padding: 20px 28px;
-  border: 4px solid #fde68a;
-  border-radius: 24px;
+  padding: 15px 21px;
+  border: 3px solid #fde68a;
+  border-radius: 18px;
   background: #fffbeb;
   font-family: inherit;
-  font-size: 28px;
+  font-size: 21px;
   color: #451a03;
   outline: none;
-  margin-bottom: 28px;
+  margin-bottom: 21px;
   transition: border-color 0.15s;
 }
 .login-register .auth-card input:focus {
@@ -568,41 +568,41 @@ img {
   color: #fff;
   font-family: inherit;
   font-weight: 800;
-  font-size: 28px;
+  font-size: 21px;
   border: none;
-  border-radius: 40px;
-  padding: 24px;
+  border-radius: 30px;
+  padding: 18px;
   cursor: pointer;
   width: 100%;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 3px 12px rgba(245, 158, 11, 0.3);
   transition: transform 0.15s, box-shadow 0.15s;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .login-register .auth-card .auth-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
 }
 
 .login-register .separator {
   font-weight: 800;
   color: #a16207;
   align-self: center;
-  font-size: 32px;
+  font-size: 24px;
 }
 
 .error-msg {
   color: #dc2626;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
 .success-msg {
   color: #16a34a;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
@@ -610,17 +610,17 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   width: 100%;
-  padding: 24px;
-  border-radius: 24px;
+  padding: 18px;
+  border-radius: 18px;
   background: #4285f4;
   color: #fff;
   font-family: inherit;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 21px;
   text-decoration: none;
-  margin-top: 28px;
+  margin-top: 21px;
   transition: background 0.15s;
 }
 .google-auth-button:hover {
@@ -629,48 +629,48 @@ img {
 }
 
 .login-register .or-text {
-  font-size: 24px;
+  font-size: 18px;
   color: #a16207;
   text-align: center;
-  margin-top: 28px;
-  margin-bottom: 8px;
+  margin-top: 21px;
+  margin-bottom: 6px;
 }
 
 /* ── Profile page ── */
 .profile-hero {
   background: #fff;
-  border: 4px solid #fbbf24;
-  border-radius: 40px;
-  padding: 56px;
+  border: 3px solid #fbbf24;
+  border-radius: 30px;
+  padding: 42px;
   display: flex;
   align-items: center;
-  gap: 48px;
-  margin-bottom: 48px;
+  gap: 36px;
+  margin-bottom: 36px;
 }
 
 .profile-hero .profile-avatar {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  border: 8px solid #f59e0b;
+  border: 6px solid #f59e0b;
   flex-shrink: 0;
 }
 
 .profile-hero .profile-info h2 {
   font-weight: 800;
-  font-size: 44px;
+  font-size: 33px;
   color: #451a03;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .profile-hero .profile-info p {
-  font-size: 26px;
+  font-size: 20px;
   color: #a16207;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .profile-hero .profile-info .profile-stat {
-  font-size: 26px;
+  font-size: 20px;
   color: #78350f;
   font-weight: 600;
 }
@@ -681,10 +681,10 @@ img {
   color: #fff;
   font-family: inherit;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 20px;
   border: none;
-  border-radius: 24px;
-  padding: 16px 36px;
+  border-radius: 18px;
+  padding: 12px 27px;
   cursor: pointer;
   transition: background 0.15s;
 }
@@ -694,65 +694,65 @@ img {
 
 .user-posts h2 {
   font-weight: 800;
-  font-size: 36px;
+  font-size: 27px;
   color: #451a03;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .user-posts ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 /* ── Edit post ── */
 .edit-post-container {
-  max-width: 1280px;
-  margin: 48px auto;
+  max-width: 960px;
+  margin: 36px auto;
 }
 
 .edit-post-container h2 {
   font-weight: 800;
-  font-size: 40px;
+  font-size: 30px;
   color: #451a03;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
 /* ── Register username ── */
 .register-username {
-  max-width: 880px;
-  margin: 120px auto;
+  max-width: 660px;
+  margin: 90px auto;
 }
 
 .register-username h2 {
   font-weight: 800;
-  font-size: 40px;
+  font-size: 30px;
   color: #451a03;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .register-username label {
   font-weight: 600;
-  font-size: 26px;
+  font-size: 20px;
   color: #78350f;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .register-username input {
   width: 100%;
-  padding: 20px 28px;
-  border: 4px solid #fde68a;
-  border-radius: 24px;
+  padding: 15px 21px;
+  border: 3px solid #fde68a;
+  border-radius: 18px;
   background: #fffbeb;
   font-family: inherit;
-  font-size: 28px;
+  font-size: 21px;
   color: #451a03;
   outline: none;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .register-username input:focus {
   border-color: #f59e0b;
@@ -763,32 +763,32 @@ img {
   color: #fff;
   font-family: inherit;
   font-weight: 800;
-  font-size: 28px;
+  font-size: 21px;
   border: none;
-  border-radius: 40px;
-  padding: 24px;
+  border-radius: 30px;
+  padding: 18px;
   cursor: pointer;
   width: 100%;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 3px 12px rgba(245, 158, 11, 0.3);
 }
 
 /* ── Error page ── */
 .error-page {
   text-align: center;
-  padding: 160px 40px;
+  padding: 120px 30px;
 }
 
 .error-page h2 {
   font-weight: 800;
-  font-size: 48px;
+  font-size: 36px;
   color: #451a03;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .error-page p {
-  font-size: 28px;
+  font-size: 21px;
   color: #78350f;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 /* ── Footer ── */
@@ -796,13 +796,13 @@ img {
   background: #451a03;
   color: #fbbf24;
   text-align: center;
-  padding: 32px;
-  font-size: 26px;
+  padding: 24px;
+  font-size: 20px;
   margin-top: auto;
 }
 
 /* ── Responsive ── */
-@media (max-width: 1536px) {
+@media (max-width: 1152px) {
   .main-layout {
     flex-direction: column;
   }
@@ -813,21 +813,21 @@ img {
     overflow-x: auto;
   }
   .sidebar .card {
-    min-width: 440px;
+    min-width: 330px;
   }
   .header {
-    padding: 0 24px;
+    padding: 0 18px;
   }
   .header-brand span {
-    font-size: 40px;
+    font-size: 30px;
   }
   .header-nav li a {
-    padding: 8px 20px;
-    font-size: 26px;
+    padding: 6px 15px;
+    font-size: 20px;
   }
   .page-wrap {
-    padding: 0 20px;
-    margin: 24px auto;
+    padding: 0 15px;
+    margin: 18px auto;
   }
   .login-register {
     flex-direction: column;
@@ -835,7 +835,7 @@ img {
   }
   .login-register .auth-card {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
   }
   .profile-hero {
     flex-direction: column;
@@ -843,6 +843,6 @@ img {
   }
   .profile-hero .delete-account-btn {
     margin-left: 0;
-    margin-top: 24px;
+    margin-top: 18px;
   }
 }
